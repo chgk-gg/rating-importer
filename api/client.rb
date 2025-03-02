@@ -7,25 +7,26 @@ class APIClient
   include HTTParty
   base_uri 'https://api.rating.chgk.net'
   ITEMS_PER_PAGE = 100
+  TOURNAMENTS_PER_PAGE = 50
 
   def initialize
     @headers = { accept: 'application/json' }
   end
 
   def all_tournaments(page:)
-    paged_fetch('/tournaments?', page)
+    paged_fetch('/tournaments?', page, items_per_page: TOURNAMENTS_PER_PAGE)
   end
 
   def maii_tournaments(page:)
-    paged_fetch('/tournaments?properties.maiiRating=true', page)
+    paged_fetch('/tournaments?properties.maiiRating=true', page, items_per_page: TOURNAMENTS_PER_PAGE)
   end
 
   def tournaments_started_after(date:, page:)
-    paged_fetch("/tournaments?dateStart%5Bafter%5D=#{date}", page)
+    paged_fetch("/tournaments?dateStart%5Bafter%5D=#{date}", page, items_per_page: TOURNAMENTS_PER_PAGE)
   end
 
   def tournaments_updated_after(date:, page:)
-    paged_fetch("/tournaments?lastEditDate%5Bafter%5D=#{date}", page)
+    paged_fetch("/tournaments?lastEditDate%5Bafter%5D=#{date}", page, items_per_page: TOURNAMENTS_PER_PAGE)
   end
 
   def tournament_results(tournament_id:)
@@ -60,8 +61,8 @@ class APIClient
 
   private
 
-  def paged_fetch(query, page)
-    fetch("#{query}&itemsPerPage=#{ITEMS_PER_PAGE}&page=#{page}")
+  def paged_fetch(query, page, items_per_page: ITEMS_PER_PAGE)
+    fetch("#{query}&itemsPerPage=#{items_per_page}&page=#{page}")
   end
 
   def fetch(query)
