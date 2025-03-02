@@ -36,7 +36,11 @@ class TournamentDetailsFetcher
       logger.info "fetched page #{page_number}"
 
       page_number += 1
-      tournaments = fetch_page(page_number)
+      tournaments = begin
+        fetch_page(page_number)
+      rescue StandardError
+        next
+      end
     end
   end
 
