@@ -5,7 +5,7 @@ require_relative '../logging'
 class APIClient
   include Loggable
   include HTTParty
-  base_uri 'https://api.rating.chgk.net'
+  base_uri 'https://api.rating.chgk.info'
   ITEMS_PER_PAGE = 100
   TOURNAMENTS_PER_PAGE = 50
 
