@@ -8,9 +8,8 @@
 0 2 * * THU bundle exec rake base_rosters:fetch_id_range[60001,30000]
 0 2 * * FRI bundle exec rake base_rosters:fetch_id_range[90001,30000]
 
-# Additional data: names of players and teams, new towns in the database
+# Additional data: names of players, new towns in the database
 30 10 * * * bundle exec rake players:fetch_all
-30 16 * * * bundle exec rake teams:fetch_all
 0 12 * * * bundle exec rake towns:fetch_all
 
 # Information about tournaments: name, city, number of questions
