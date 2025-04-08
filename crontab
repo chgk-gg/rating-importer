@@ -1,19 +1,4 @@
 # All imports are started at even hours
-# Every two hours we load data for the most recent tournaments
-35 */2 * * * bundle exec rake tournaments:results_for_recent[28]
-40 */2 * * * bundle exec rake tournaments:rosters_for_recent[28]
-
-# Many tournaments open their results at 20:59 UTC
-0 21 * * * bundle exec rake tournaments:results_for_recent[3]
-
-# Once a day we refresh data for all rating tournaments (starting with September 2021)
-5 8 * * * bundle exec rake tournaments:results_for_rating
-10 8 * * * bundle exec rake tournaments:rosters_for_rating
-
-# Once a week we update data for all tournaments in the past year
-15 2 * * TUE bundle exec rake tournaments:rosters_for_recent[365]
-15 4 * * TUE bundle exec rake tournaments:results_for_recent[365]
-
 # Updating base rosters for teams that have played rating tournaments
 10 12 * * * bundle exec rake base_rosters:fetch_for_teams_in_rating_tournaments
 
