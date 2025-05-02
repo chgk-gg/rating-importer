@@ -8,8 +8,5 @@
 0 2 * * THU bundle exec rake base_rosters:fetch_id_range[60001,30000]
 0 2 * * FRI bundle exec rake base_rosters:fetch_id_range[90001,30000]
 
-# Seasons: changes should happen only once a year, but we recheck every week
-15 6 * * THU bundle exec rake seasons:fetch_all
-
 # Wrong team IDs: team IDs are assigned by representatives manually and sometimes need correction
 0 20 * * * bundle exec rake export:continuity
