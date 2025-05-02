@@ -8,8 +8,7 @@
 0 2 * * THU bundle exec rake base_rosters:fetch_id_range[60001,30000]
 0 2 * * FRI bundle exec rake base_rosters:fetch_id_range[90001,30000]
 
-# Additional data: names of players, new towns in the database
-30 10 * * * bundle exec rake players:fetch_all
+# Additional data: new towns in the database
 0 12 * * * bundle exec rake towns:fetch_all
 
 # Seasons: changes should happen only once a year, but we recheck every week
